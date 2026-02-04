@@ -1,72 +1,62 @@
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
+import { AboutDE } from './components/de/AboutDE'
+import { AboutEN } from './components/en/AboutEN'
+import Hero from './components/Hero'
+import { AboutPT } from './components/pt/AboutPT'
+import Navbar from './components/Navbar'
+import { useMotionValueEvent, useScroll } from 'framer-motion'
 
 function App() {
 
-  const LuxuryTrimBackground = () => (
-  <svg
-    viewBox="0 0 1440 600"
-    preserveAspectRatio="none"
-    className="absolute inset-0 w-full h-full"
-  >
-    <defs>
-      {/* Warm base gradient (wood / sunset vibe) */}
-      <linearGradient id="baseGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="#0b1220" />
-        <stop offset="50%" stopColor="#1a1208" />
-        <stop offset="100%" stopColor="#2a1608" />
-      </linearGradient>
+  const [showNavbar, setShowNavbar] = useState(false);
+  const [lang, setLang] = useState(() => {
+    return localStorage.getItem("lang") || "EN";
+  });
+  const { scrollYProgress } = useScroll();
+  const heroRef = useRef(null);
 
-      {/* Subtle warm glow */}
-      <radialGradient id="warmGlow" cx="70%" cy="45%" r="40%">
-        <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.18" />
-        <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
-      </radialGradient>
-    </defs>
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setShowNavbar(latest > 0.5);
+  })
 
-    {/* Base */}
-    <rect width="100%" height="100%" fill="url(#baseGradient)" />
+  useEffect(() => {
+    localStorage.setItem("lang", lang)
+  }, [lang]);
 
-    {/* Chrome lines */}
-    <g stroke="white" strokeOpacity="0.14" strokeWidth="1">
-      {Array.from({ length: 22 }).map((_, i) => (
-        <line
-          key={i}
-          x1={-200 + i * 80}
-          y1="0"
-          x2={200 + i * 80}
-          y2="600"
-        >
-          <animate
-            attributeName="x1"
-            from={-200 + i * 80}
-            to={-160 + i * 80}
-            dur="45s"
-            repeatCount="indefinite"
-          />
-          <animate
-            attributeName="x2"
-            from={200 + i * 80}
-            to={240 + i * 80}
-            dur="45s"
-            repeatCount="indefinite"
-          />
-        </line>
-      ))}
-    </g>
+  useEffect(() => {
+    if (!heroRef.current) return;
 
-    {/* Warm glow overlay */}
-    <rect width="100%" height="100%" fill="url(#warmGlow)" />
-  </svg>
-);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Navbar zeigen, wenn Hero **nicht mehr sichtbar** (ist aus dem Viewport)
+        setShowNavbar(!entry.isIntersecting);
+      },
+      { threshold: 0 } // Sobald irgendein Pixel verschwindet
+    );
+
+    observer.observe(heroRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+
+  const getComponentsByLanguage = () => {
+    if (lang === "EN") return <AboutEN />;
+    if (lang === "DE") return <AboutDE />;
+    return <AboutPT />;
+  }
 
   return (
-    <div className="relative min-h-screen bg-base-100 text-base-content overflow-hidden">
-      <LuxuryTrimBackground />
-      <div className="relative z-10">
-        {/* Your content */}
-      </div>
+    <>
+    {showNavbar && <Navbar />}
+
+    <div ref={heroRef}>
+      <Hero lang={lang} setLang={setLang}/>
     </div>
+    {getComponentsByLanguage()}
+    </>
   )
 }
 
-export default App
+export default App;

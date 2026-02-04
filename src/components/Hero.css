@@ -1,0 +1,30 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  background-image: url("./../assets/apulia.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: black;
+}
+
+.hero-content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}

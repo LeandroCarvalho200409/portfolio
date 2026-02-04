@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@plugin "daisyui" {
+  themes: light --default, dark --preferesdark;
+}
+
+body {
+  margin: 0;
+}
