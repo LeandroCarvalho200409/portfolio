@@ -1,28 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
-import { AboutDE } from './components/de/AboutDE'
-import { AboutEN } from './components/en/AboutEN'
+import { About } from './components/About'
 import Hero from './components/Hero'
-import { AboutPT } from './components/pt/AboutPT'
 import Navbar from './components/Navbar'
-import { useMotionValueEvent, useScroll } from 'framer-motion'
+import { useScroll } from 'framer-motion'
+import Skills from './components/Skills'
+import Footer from './components/Footer'
+import Education from './components/Education'
+import { ThemeProvider } from './components/utils/ThemeContext'
 
 function App() {
 
   const [showNavbar, setShowNavbar] = useState(false);
-  const [lang, setLang] = useState(() => {
-    return localStorage.getItem("lang") || "EN";
-  });
   const { scrollYProgress } = useScroll();
   const heroRef = useRef(null);
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    setShowNavbar(latest > 0.5);
-  })
-
-  useEffect(() => {
-    localStorage.setItem("lang", lang)
-  }, [lang]);
 
   useEffect(() => {
     if (!heroRef.current) return;
@@ -40,22 +31,18 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-
-  const getComponentsByLanguage = () => {
-    if (lang === "EN") return <AboutEN />;
-    if (lang === "DE") return <AboutDE />;
-    return <AboutPT />;
-  }
-
   return (
-    <>
-    {showNavbar && <Navbar />}
+    <ThemeProvider>
+      {showNavbar && <Navbar />}
 
-    <div ref={heroRef}>
-      <Hero lang={lang} setLang={setLang}/>
-    </div>
-    {getComponentsByLanguage()}
-    </>
+      <div ref={heroRef}>
+        <Hero />
+      </div>
+      <About />
+      <Skills />
+      <Education />
+      <Footer />
+    </ThemeProvider>
   )
 }
 

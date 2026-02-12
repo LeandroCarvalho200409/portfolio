@@ -1,0 +1,9 @@
+.about {
+    flex-direction: row;
+}
+
+@media (max-width: 1024px) {
+    .about {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,17 @@
+.drawer-wrapper {
+    display: none;
+}
+
+.lg-navbar-content {
+    display: inherit;
+}
+
+@media (max-width: 1024px) {
+    .drawer-wrapper {
+        display: inherit;
+    }
+
+    .lg-navbar-content {
+        display: none;
+    }
+}

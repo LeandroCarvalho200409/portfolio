@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
+import logo from "./../assets/Logo-no-bg.png";
 import "./Navbar.css";
-import logoLight from "./../assets/Logo-primary-light.png";
+import StyleToggle from "./utils/StyleToggle";
+import LanguageToggle from "./utils/LanguageToggle";
 
 export default function Navbar() {
   return (
@@ -12,7 +14,33 @@ export default function Navbar() {
       transition={{ duration: 0.3, ease: "easeOut" }}
     >
       <div className="flex justify-between w-full px-4">
-        <img className="ml-[15px]" src={logoLight} alt="Logo for light mode" width="80"></img>
+        <img className="ml-[15px]" src={logo} alt="Logo for light mode" width="80"></img>
+      </div>
+
+      <div className="lg-navbar-content ml-auto flex flex-row">
+        <StyleToggle />
+        <LanguageToggle />
+      </div>
+
+      <div className="drawer-wrapper drawer ml-auto">
+        <input id="my-drawer-1" type="checkbox" className="drawer-toggle ml-auto" />
+        <div className="drawer-content w-[120px] ml-auto">
+          {/* Page content here */}
+          <label htmlFor="my-drawer-1" className="btn drawer-button ml-auto">Open drawer</label>
+        </div>
+        <div className="drawer-side">
+          <label htmlFor="my-drawer-1" aria-label="close sidebar" className="drawer-overlay"></label>
+          <ul className="menu bg-base-200 min-h-full w-80 p-4">
+            {/* Sidebar content here */}
+            <li><a>Sidebar Item 2</a></li>
+            <li>
+              <div className="flex flex-row">
+                <StyleToggle />
+                <LanguageToggle />
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </motion.nav>
   );
