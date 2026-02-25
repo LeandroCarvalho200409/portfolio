@@ -2,8 +2,28 @@
     flex-direction: row;
 }
 
+.about-text {
+    margin-left: 50px;
+}
+
+.about-parent {
+    max-width: 70%;
+}
+
 @media (max-width: 1024px) {
     .about {
         flex-direction: column;
+    }
+    .about-parent {
+        max-width: 100%;
+    }
+
+    .about-text {
+        margin-left: 0px;
+    }
+
+    .about-section {
+        padding-left: 50px;
+        padding-right: 50px;
     }
 }

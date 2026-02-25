@@ -8,6 +8,8 @@ import Skills from './components/Skills'
 import Footer from './components/Footer'
 import Education from './components/Education'
 import { ThemeProvider } from './components/utils/ThemeContext'
+import Experience from './components/Experience'
+import Contact from './components/Contact'
 
 function App() {
 
@@ -40,7 +42,9 @@ function App() {
       </div>
       <About />
       <Skills />
+      <Experience />
       <Education />
+      <Contact />
       <Footer />
     </ThemeProvider>
   )

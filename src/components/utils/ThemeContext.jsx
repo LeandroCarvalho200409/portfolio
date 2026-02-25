@@ -4,7 +4,7 @@ import { createContext, useState, useEffect, useContext } from "react";
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  const [styleMode, setStyleMode] = useState("light");
+  const [styleMode, setStyleMode] = useState("nord");
 
   // Beim Mount: localStorage lesen
   useEffect(() => {

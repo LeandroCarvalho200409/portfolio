@@ -1,11 +1,15 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 import "./Skills.css"
+import { useLang } from "./utils/LanguageContext";
+import { getObjectByLangWithOrderedArray } from "./utils/Utils";
 
 export default function SkillsDE() {
 
     const controls = useAnimation();
     const scrollDuration = 20;
+
+    const { lang } = useLang()
 
     useEffect(() => {
         controls.start({
@@ -38,13 +42,20 @@ export default function SkillsDE() {
         "MySQL",
         "PostgreSQL",
         "Docker",
-        "Figma"
+        "Figma",
+        "Svelte"
+    ]
+
+    const titles = [
+        "Technologien",
+        "Tecnologias",
+        "Technologies"
     ]
 
 
     return (
-        <section className="flex flex-col items-center w-[70%] mx-auto" style={{ minHeight: "50vh" }}>
-            <h1>Technologien</h1>
+        <section className="flex flex-col items-center w-[70%] mx-auto mt-[100px]" style={{ minHeight: "50vh" }}>
+            <h1>{getObjectByLangWithOrderedArray(titles, lang)}</h1>
 
             <div className="overflow-hidden w-full py-4">
                 <motion.div

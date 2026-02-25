@@ -2,6 +2,7 @@
 import { useLang } from "./utils/LanguageContext";
 import myFoto from "./../assets/bewerbungsfoto.png"
 import "./About.css"
+import { getObjectByLangWithOrderedArray } from "./utils/Utils";
 
 export function About() {
 
@@ -9,7 +10,6 @@ export function About() {
 
   const textDE = (
     <>
-      <h2>Über mich</h2>
       <p className="text-center text-[14pt]">
         Ich bin ein ambitionierter Junior Softwareentwickler mit einem Jahr Praxiserfahrung in der Entwicklung hochverfügbaren
         Full-Stack-Applikationen mit Java/Kotlin und Angular. Ich verfüge über fundierte Kenntnisse im Umgang mit relationalen
@@ -36,7 +36,6 @@ export function About() {
 
   const textPT = (
     <>
-      <h2>Sobre mim</h2>
       <p className="text-center text-[14pt]">
         Eu sou um desenvolvedor de software Full-Stack júnior com um ano de experiência profissional em desenvolvimento de aplicações
         altamente disponíveis com Java/Kotlin e Angular. Possuo igualmente conhecimentos em bases de dados relacionais,
@@ -62,16 +61,15 @@ export function About() {
 
   const textEN = (
     <>
-      <h2>About Me</h2>
       <p className="text-center text-[14pt]">
-        I'm a Junior Full-Stack Software Developer with one year of professional experience in developing highly available applications 
-        using Java/Kotlin and Angular. I also have knowledge of relational databases, particularly MySQL. In my previous role, 
-        I had the pleasure to with the software monitoring tool AppDynamics. During my time at university, I gained experience in 
+        I'm a Junior Full-Stack Software Developer with one year of professional experience in developing highly available applications
+        using Java/Kotlin and Angular. I also have knowledge of relational databases, particularly MySQL. In my previous role,
+        I had the pleasure to with the software monitoring tool AppDynamics. During my time at university, I gained experience in
         functional programming with the languages Haskell and Elixir.
       </p>
 
       <p className="text-center text-[14pt]">
-        My mission as a developer is to create high-quality, performant, and robust software that addresses real-world problems with 
+        My mission as a developer is to create high-quality, performant, and robust software that addresses real-world problems with
         well-thought-out, sustainable digital solutions.
       </p>
 
@@ -86,22 +84,18 @@ export function About() {
     </>
   )
 
-  const getAboutContentByLang = () => {
-    if (!lang || lang === "EN") {
-      return textEN;
-    } else if (lang === "DE") {
-      return textDE;
-    }
-    return textPT;
-  }
-
   return (
-    <section className="about flex max-w-[70%] mx-auto mt-[100px]" style={{ minHeight: "100vh", padding: "5rem" }}>
-      <div className="flex justify-center">
-        <img src={myFoto} alt="Leandro Carvalho Bewerbungsfoto" width="400px" height="400px" />
-      </div>
-      <div className="ml-[50px] flex flex-col items-center">
-        {getAboutContentByLang()}
+    <section className="about-section flex flex-col items-center max-w-[100%] mx-auto pt-[200px] pb-[50px] bg-primary px-[5rem]" style={{ minHeight: "100vh" }}>
+      <div className="about-parent flex flex-col" >
+        <h1 className="mx-auto mb-[50px]">{getObjectByLangWithOrderedArray(["Über mich", "Sobre mim", "About me"], lang)}</h1>
+        <div className="about flex">
+          <div className="flex justify-center">
+            <img src={myFoto} alt="Leandro Carvalho Bewerbungsfoto" width="400px" height="400px" />
+          </div>
+          <div className="about-text flex flex-col items-center">
+            {getObjectByLangWithOrderedArray([textDE, textPT, textEN], lang)}
+          </div>
+        </div>
       </div>
     </section>
   );

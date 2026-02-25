@@ -6,6 +6,7 @@ import { useLang } from "./utils/LanguageContext";
 import logo from "./../assets/Logo-no-bg.png"
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
+import { getObjectByLangWithOrderedArray } from "./utils/Utils";
 
 export default function Hero() {
 
@@ -16,7 +17,7 @@ export default function Hero() {
     const overlayOpacity = useTransform(scrollYProgress, [0, 0.3], [0.6, 0]);
     const height = useTransform(scrollYProgress, [0, 1], ["100vh", "20vh"])
 
-    const { lang, setLang } = useLang()
+    const { lang } = useLang()
 
     const descriptionEN = (
         <div className="flex flex-col w-full text-left ml-[15px]">
@@ -68,13 +69,13 @@ export default function Hero() {
                             </div>
                             <div className="flex flex-col my-auto">
                                 <img src={logo} alt="Leandro Carvalho logo" className="max-w-[150px]" />
-                                {(!lang || lang === "EN") ? descriptionEN : lang === "DE" ? descriptionDE : descriptionPT}
+                                {getObjectByLangWithOrderedArray([descriptionDE, descriptionPT, descriptionEN], lang)}
                                 <div className="bg-base-100 py-[10px] px-[20px] rounded-[3vw] text-base-content w-fit ml-[15px] mt-[15px]">
                                     <div className="flex flex-row gap-[10px]">
-                                        <a className="w-[30px] h-[30px] rounded-[1vw] border p-[5px]" href="https://github.com/LeandroCarvalho200409" target="_blank">
+                                        <a className="w-[30px] h-[30px] rounded-[1vw] border p-[5px] hover:text-primary" href="https://github.com/LeandroCarvalho200409" target="_blank">
                                             <FaGithub className="w-[30px] h-[30px]" />
                                         </a>
-                                        <a className="w-[30px] h-[30px] rounded-[1vw] border p-[5px]" href="https://www.linkedin.com/in/leandro-filipe-lourenço-carvalho-23700b215" target="_blank">
+                                        <a className="w-[30px] h-[30px] rounded-[1vw] border p-[5px] hover:text-primary" href="https://www.linkedin.com/in/leandro-filipe-lourenço-carvalho-23700b215" target="_blank">
                                             <FaLinkedin className="w-[30px] h-[30px]" />
                                         </a>
                                     </div>

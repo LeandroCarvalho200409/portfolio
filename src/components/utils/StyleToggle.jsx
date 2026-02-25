@@ -6,12 +6,12 @@ export default function StyleToggle() {
   const { styleMode, setStyleMode } = useTheme();
 
   const toggleStyle = () => {
-    setStyleMode(prev => (prev === "light" ? "dark" : "light"));
+    setStyleMode(prev => (prev === "nord" ? "business" : "nord"));
   };
 
   return (
     <button onClick={toggleStyle} className="btn btn-primary-content text-lg px-8">
-      {styleMode === "light" ? <IoSunny /> : <MdDarkMode />}
+      {styleMode === "nord" ? <IoSunny /> : <MdDarkMode />}
     </button>
   );
 }

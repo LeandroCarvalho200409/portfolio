@@ -3,11 +3,12 @@ import logo from "./../assets/Logo-no-bg.png";
 import "./Navbar.css";
 import StyleToggle from "./utils/StyleToggle";
 import LanguageToggle from "./utils/LanguageToggle";
+import { FiMenu } from "react-icons/fi";
 
 export default function Navbar() {
   return (
     <motion.nav
-      className="navbar navbar-bg bg-opacity-80 fixed top-[20px] left-1/2 -translate-x-1/2 w-9/10 z-50 shadow-md rounded-[1.5vw] bg-primary"
+      className="navbar navbar-bg fixed top-[20px] left-1/2 -translate-x-1/2 w-4/5 z-50 shadow-md rounded-[1.5vw] bg-neutral"
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -80, opacity: 0 }}
@@ -23,10 +24,10 @@ export default function Navbar() {
       </div>
 
       <div className="drawer-wrapper drawer ml-auto">
-        <input id="my-drawer-1" type="checkbox" className="drawer-toggle ml-auto" />
-        <div className="drawer-content w-[120px] ml-auto">
+        <input id="my-drawer-1" type="checkbox" className="drawer-toggle ml-auto bg-neutral" />
+        <div className="drawer-content w-[50px] pr-[20px] ml-auto">
           {/* Page content here */}
-          <label htmlFor="my-drawer-1" className="btn drawer-button ml-auto">Open drawer</label>
+          <label htmlFor="my-drawer-1" className="btn drawer-button ml-auto"><FiMenu /></label>
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-1" aria-label="close sidebar" className="drawer-overlay"></label>
