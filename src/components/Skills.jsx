@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 import "./Skills.css"
@@ -54,7 +55,7 @@ export default function SkillsDE() {
 
 
     return (
-        <section className="flex flex-col items-center w-[70%] mx-auto mt-[100px]" style={{ minHeight: "50vh" }}>
+        <section id="skills" className="flex flex-col items-center w-[70%] mx-auto mt-[100px] scroll-mt-24" style={{ minHeight: "50vh" }}>
             <h1>{getObjectByLangWithOrderedArray(titles, lang)}</h1>
 
             <div className="overflow-hidden w-full py-4">

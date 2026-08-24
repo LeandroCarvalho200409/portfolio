@@ -3,18 +3,18 @@ import './App.css'
 import { About } from './components/About'
 import Hero from './components/Hero'
 import Navbar from './components/Navbar'
-import { useScroll } from 'framer-motion'
 import Skills from './components/Skills'
 import Footer from './components/Footer'
 import Education from './components/Education'
 import { ThemeProvider } from './components/utils/ThemeContext'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Legal from './components/Legal'
 
 function App() {
 
   const [showNavbar, setShowNavbar] = useState(false);
-  const { scrollYProgress } = useScroll();
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function App() {
         // Navbar zeigen, wenn Hero **nicht mehr sichtbar** (ist aus dem Viewport)
         setShowNavbar(!entry.isIntersecting);
       },
-      { threshold: 0 } // Sobald irgendein Pixel verschwindet
+      { threshold: 0.2 } // Sobald irgendein Pixel verschwindet
     );
 
     observer.observe(heroRef.current);
@@ -34,19 +34,26 @@ function App() {
   }, []);
 
   return (
-    <ThemeProvider>
-      {showNavbar && <Navbar />}
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={(
+          <ThemeProvider>
+            {showNavbar && <Navbar />}
 
-      <div ref={heroRef}>
-        <Hero />
-      </div>
-      <About />
-      <Skills />
-      <Experience />
-      <Education />
-      <Contact />
-      <Footer />
-    </ThemeProvider>
+            <div ref={heroRef}>
+              <Hero />
+            </div>
+            <About />
+            <Skills />
+            <Experience />
+            <Education />
+            <Contact />
+            <Footer />
+          </ThemeProvider>
+        )} />
+        <Route path='/legal' element={<Legal />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

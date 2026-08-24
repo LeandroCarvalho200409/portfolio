@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useLang } from "./utils/LanguageContext";
 import { getObjectByLangWithOrderedArray } from "./utils/Utils";
 import CollapseUtil from "./utils/CollapseUtil";
@@ -141,7 +140,7 @@ export default function Education() {
     ]
 
     return (
-        <section className="flex flex-col items-center w-[70%] mx-auto mt-[100px]" style={{ minHeight: "20vh" }}>
+        <section id="education" className="flex flex-col items-center w-[70%] mx-auto mt-[100px]" style={{ minHeight: "20vh" }}>
             <h1>{getObjectByLangWithOrderedArray(titleArray, lang)}</h1>
             <CollapseUtil content={[
                 ["2024-2025", getObjectByLangWithOrderedArray(bachelorTitleArray, lang), getObjectByLangWithOrderedArray(bachelorContentArray, lang)],

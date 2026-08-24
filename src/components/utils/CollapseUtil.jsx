@@ -1,15 +1,12 @@
-import { useState, useEffect } from "react";
-import { useLang } from "./LanguageContext";
+import { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { getObjectByLangWithOrderedArray } from "./Utils";
 
 export default function CollapseUtil({ content }) {
 
-    const [arrows, setArrows] = useState([]);
-
-    useEffect(() => {
-        setArrows(Array(content.length).fill("down"));
-    }, [content.length]);
+    // Initialize arrows state based on content length
+    const [arrows, setArrows] = useState(() => 
+        Array(content.length).fill("down")
+    );
 
     const toggleArrow = (index) => {
         setArrows(prev =>

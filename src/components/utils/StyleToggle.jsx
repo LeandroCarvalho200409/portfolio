@@ -10,7 +10,7 @@ export default function StyleToggle() {
   };
 
   return (
-    <button onClick={toggleStyle} className="btn btn-primary-content text-lg px-8">
+    <button onClick={toggleStyle} className="btn btn-neutral text-lg text-primary px-8">
       {styleMode === "nord" ? <IoSunny /> : <MdDarkMode />}
     </button>
   );

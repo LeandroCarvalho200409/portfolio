@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./Hero.css";
 import StyleToggle from "./utils/StyleToggle";
@@ -45,6 +46,7 @@ export default function Hero() {
 
     return (
         <motion.section
+            id="hero"
             className="hero relative w-full overflow-hidden"
             style={{ height }}>
             <motion.div

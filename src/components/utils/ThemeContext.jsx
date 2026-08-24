@@ -4,13 +4,9 @@ import { createContext, useState, useEffect, useContext } from "react";
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  const [styleMode, setStyleMode] = useState("nord");
-
-  // Beim Mount: localStorage lesen
-  useEffect(() => {
-    const saved = localStorage.getItem("style");
-    if (saved) setStyleMode(saved);
-  }, []);
+  const [styleMode, setStyleMode] = useState(() => {
+    return localStorage.getItem("style") || "nord";
+  });
 
   // Immer sync mit DOM + localStorage
   useEffect(() => {
