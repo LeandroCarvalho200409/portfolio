@@ -34,9 +34,9 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.DEV ? '/' : '/portfolio'}>
       <Routes>
-        <Route path="/" element={(
+        <Route path="/portfolio" element={(
           <ThemeProvider>
             {showNavbar && <Navbar />}
 

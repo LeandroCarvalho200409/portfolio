@@ -9,7 +9,7 @@ export default function Legal() {
 
     return (
         <div className="ml-[50px] mt-[50px]">
-            <Link to="/">{getObjectByLangWithOrderedArray(["Zurück", "Retrodecer", "Back"], lang)}</Link>
+            <Link to="/portfolio">{getObjectByLangWithOrderedArray(["Zurück", "Retrodecer", "Back"], lang)}</Link>
             <LanguageToggle></LanguageToggle>
 
             <h1>1- {getObjectByLangWithOrderedArray(["Impressum", "Informações legais", "Legal Notice"], lang)}</h1>
